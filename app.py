@@ -14,7 +14,7 @@ st.markdown("""
 <style>
 
 .title{
-    font-size:200px;
+    font-size:500px;
     font-weight:1000;
     color:#2E86C1;
     text-align:center;
@@ -154,3 +154,4 @@ if st.sidebar.button("🔍 Predict Diabetes"):
             '<div class="result-low">✅ Low Risk: Patient is unlikely to have Diabetes</div>',
             unsafe_allow_html=True
         )
+
