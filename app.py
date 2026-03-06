@@ -14,45 +14,39 @@ st.markdown("""
 <style>
 
 .title{
-    font-size:500px;
-    font-weight:1000;
+    font-size:85px;
+    font-weight:800;
     color:#2E86C1;
     text-align:center;
 }
 
 .subtitle{
-    font-size:18px;
+    font-size:22px;
     color:gray;
     text-align:center;
 }
 
 .info-box{
     background-color:#eef5ff;
-    padding:20px;
+    padding:25px;
     border-radius:10px;
     margin-bottom:20px;
 }
 
-.feature-box{
-    background-color:#f8f9fa;
-    padding:15px;
-    border-radius:10px;
-}
-
 .result-high{
     background-color:#f8d7da;
-    padding:20px;
+    padding:25px;
     border-radius:10px;
-    font-size:22px;
+    font-size:24px;
     color:#721c24;
     text-align:center;
 }
 
 .result-low{
     background-color:#d4edda;
-    padding:20px;
+    padding:25px;
     border-radius:10px;
-    font-size:22px;
+    font-size:24px;
     color:#155724;
     text-align:center;
 }
@@ -62,7 +56,7 @@ st.markdown("""
 
 # -------- TITLE --------
 st.markdown('<p class="title">🧠 AI-Based Diabetes Prediction System</p>', unsafe_allow_html=True)
-st.markdown('<p class="subtitle">Predict diabetes risk using Machine Learning</p>', unsafe_allow_html=True)
+st.markdown('<p class="subtitle">Enter patient health parameters to predict diabetes risk using Machine Learning</p>', unsafe_allow_html=True)
 
 # -------- LOAD MODEL --------
 loaded_model = pickle.load(open("diabetes_model.pkl", "rb"))
@@ -79,6 +73,7 @@ bmi = st.sidebar.slider("BMI", 0.0, 70.0, 25.0)
 dpf = st.sidebar.slider("Diabetes Pedigree Function", 0.0, 2.5, 0.5)
 age = st.sidebar.slider("Age", 21, 81, 30)
 
+# -------- INPUT DATA --------
 features = pd.DataFrame({
     "Pregnancies":[preg],
     "Glucose":[glucose],
@@ -95,49 +90,51 @@ features = pd.DataFrame({
 st.markdown(
 """
 <div class="info-box">
-<h3>📌 How to Use This App</h3>
 
-1️⃣ Enter patient health details in the left sidebar.  
-2️⃣ Adjust the sliders according to the patient's medical values.  
-3️⃣ Click <b>Predict Diabetes</b> to analyze the risk.
+### 📌 How to Use This App
 
-The model uses <b>Logistic Regression</b> trained on medical data to estimate diabetes risk.
+1️⃣ Enter patient health details in the **left sidebar**.  
+2️⃣ Adjust the sliders according to patient medical values.  
+3️⃣ Click **Predict Diabetes** to analyze the risk.
+
+This system uses a **Logistic Regression Machine Learning model** trained on medical data to estimate diabetes probability.
+
 </div>
 """,
 unsafe_allow_html=True
 )
 
-# Feature explanation section
+# -------- HEALTH FACTORS --------
 st.markdown("### 🔍 Important Health Indicators")
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown("""
-    **Glucose Level**
-    
-    High glucose levels are one of the strongest indicators of diabetes risk.
-    """)
+**Glucose Level**
+
+High glucose levels are the strongest indicator of diabetes risk.
+""")
 
 with col2:
     st.markdown("""
-    **BMI**
-    
-    Higher BMI indicates obesity which increases diabetes risk.
-    """)
+**BMI (Body Mass Index)**
+
+Higher BMI often indicates obesity which increases diabetes risk.
+""")
 
 with col3:
     st.markdown("""
-    **Age**
-    
-    Risk increases with age, especially after 40 years.
-    """)
+**Age Factor**
+
+Diabetes risk increases with age, especially after 40 years.
+""")
 
 # -------- PREDICTION --------
 
 if st.sidebar.button("🔍 Predict Diabetes"):
 
-    st.markdown("### 📊 Patient Data")
+    st.markdown("### 📊 Entered Patient Data")
     st.write(features)
 
     prediction = loaded_model.predict(features)
@@ -154,4 +151,3 @@ if st.sidebar.button("🔍 Predict Diabetes"):
             '<div class="result-low">✅ Low Risk: Patient is unlikely to have Diabetes</div>',
             unsafe_allow_html=True
         )
-
