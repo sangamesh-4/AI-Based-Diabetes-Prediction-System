@@ -65,5 +65,30 @@ The model is trained on a diabetes dataset containing the following features:
 
 ### 🔹 1. Clone Repository  
 ```bash
+
+2. Install Dependencies
+pip install -r requirements.txt
+🔹 3. Run the Application
+streamlit run app.py
+📸 Output
+✅ Predicts diabetes status instantly
+⚡ Displays results through an interactive web interface
+📊 Provides probability-based insights
+🔮 Future Enhancements
+
+🚀 Add Deep Learning (ANN model)
+☁️ Deploy on cloud platforms (AWS/GCP)
+📊 Add visualization dashboard
+🎨 Enhance UI/UX design
+
+📌 Conclusion
+
+This project demonstrates how Machine Learning and Web Applications can be combined to build practical healthcare solutions.
+It highlights the importance of early diabetes prediction using data-driven approaches.
+
+👤 Author
+
+H Sangamesh
+🎓 Data Science Student
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
